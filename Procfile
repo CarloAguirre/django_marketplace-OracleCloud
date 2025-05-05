@@ -1,1 +1,1 @@
-web: gunicorn sumativaDos.wsgi
+web: gunicorn sumativaDos.wsgi --log-file -
