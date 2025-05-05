@@ -28,7 +28,7 @@ os.environ["TNS_ADMIN"] = str(BASE_DIR / "core" / "db" / "wallet")
 SECRET_KEY = 'django-insecure-f_y_rr2)(nf7a%@!xnxgxzm=3e5aje9b)(lacv1xtxh+xd^2ug'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -149,9 +149,3 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-import django_heroku
-django_heroku.settings(locals())
-
-ALLOWED_HOSTS = ['.herokuapp.com']
-
