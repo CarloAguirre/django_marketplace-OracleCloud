@@ -14,6 +14,7 @@ import os
 from pathlib import Path
 from django.contrib.messages import constants as message_constants
 import cx_Oracle
+import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 os.environ["TNS_ADMIN"] = str(BASE_DIR / "core" / "db" / "wallet")
@@ -81,19 +82,27 @@ WSGI_APPLICATION = 'sumativaDos.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.oracle',
+#         'NAME': '''(description=
+#             (retry_count=20)
+#             (retry_delay=3)
+#             (address=(protocol=tcps)(port=1522)(host=adb.sa-santiago-1.oraclecloud.com))
+#             (connect_data=(service_name=g692d6a5b99b611_lsy6fmm4lrc8s0kh_high.adb.oraclecloud.com))
+#             (security=(ssl_server_dn_match=yes))
+#         )''',
+#         'USER': 'ADMIN',
+#         'PASSWORD': 'OracleCloud123',
+#     }
+# }
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.oracle',
-        'NAME': '''(description=
-            (retry_count=20)
-            (retry_delay=3)
-            (address=(protocol=tcps)(port=1522)(host=adb.sa-santiago-1.oraclecloud.com))
-            (connect_data=(service_name=g692d6a5b99b611_lsy6fmm4lrc8s0kh_high.adb.oraclecloud.com))
-            (security=(ssl_server_dn_match=yes))
-        )''',
-        'USER': 'ADMIN',
-        'PASSWORD': 'OracleCloud123',
-    }
+    'default': dj_database_url.config(
+        default='postgresql://django_marketplace_user:kmRotB8XzHSzk0sShreB77FxUSEVJbET@dpg-d0ckfvre5dus73afrac0-a.oregon-postgres.render.com/django_marketplace',
+        conn_max_age=600,
+        ssl_require=True
+    )
 }
 
 MESSAGE_TAGS = {
